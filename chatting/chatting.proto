@@ -1,0 +1,46 @@
+syntax = "proto3";
+// protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative chatting/chatting.proto
+package chatting;
+
+option go_package = "grpc-example/chatting;chatting";
+
+service Chatting {
+	rpc Login(Empty) returns (User);
+	rpc Logout(Empty) returns (Empty);
+
+	rpc GetChatRoom(Empty) returns (stream Room);
+	rpc CreateRoom(CreateRoomRequest) returns (Room);
+	rpc RemoveRoom(RemoveRoomRequest) returns (Empty);
+
+	rpc EnterChatRoom(RoomRequest) returns (Empty);
+	rpc ExitChatRoom(Empty) returns (Empty);
+
+	rpc Chatting(stream Message) returns (stream Message);
+}
+
+message Empty {}
+
+message User {
+	int32 userId = 1;
+}
+
+message Room {
+	int32 roomId = 1;
+	string roomName = 2;
+}
+
+message CreateRoomRequest {
+	string roomName = 1;
+}
+
+message RemoveRoomRequest {
+	int32 RoomId = 1;
+}
+
+message RoomRequest {
+	int32 roomId = 1;
+}
+
+message Message {
+	string msg = 1;
+}
