@@ -6,3 +6,23 @@ http:
     - selector: chatting.Chatting.Login
       post: /chatting/login
       body: "*"
+    - selector: chatting.Chatting.Logout
+      post: /chatting/logout
+      body: "*"
+    - selector: chatting.Chatting.GetChatRoom
+      get: /chatting/getchatroom
+    - selector: chatting.Chatting.CreateRoom
+      post: /chatting/createroom
+      body: "*"
+    - selector: chatting.Chatting.RemoveRoom
+      post: /chatting/removeroom
+      body: "*"
+    - selector: chatting.Chatting.EnterChatRoom
+      post: /chatting/enterchatroom
+      body: "*"
+    - selector: chatting.Chatting.ExitChatRoom
+      post: /chatting/exitchatroom
+      body: "*"
+    - selector: chatting.Chatting.Chatting
+      post: /chatting/chatting
+      body: "*"
