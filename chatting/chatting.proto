@@ -4,14 +4,7 @@ package chatting;
 
 option go_package = "grpc-example/chatting;chatting";
 
-// import "google/api/annotations.proto";
-
 service Chatting {
-	// rpc Login(Empty) returns (User) {
-		// 	option(google.apihttp) = {
-			// 		get: "/login"
-			// 	};
-			// }
 	rpc Login(Empty) returns (User);
 	rpc Logout(Empty) returns (Empty);
 

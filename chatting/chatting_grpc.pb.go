@@ -35,11 +35,6 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ChattingClient interface {
-	//	rpc Login(Empty) returns (User) {
-	//		option(google.apihttp) = {
-	//			get: "/login"
-	//		};
-	//	}
 	Login(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*User, error)
 	Logout(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*Empty, error)
 	GetChatRoom(ctx context.Context, in *Empty, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Room], error)
@@ -154,11 +149,6 @@ type Chatting_ChattingClient = grpc.BidiStreamingClient[Message, Message]
 // All implementations must embed UnimplementedChattingServer
 // for forward compatibility.
 type ChattingServer interface {
-	//	rpc Login(Empty) returns (User) {
-	//		option(google.apihttp) = {
-	//			get: "/login"
-	//		};
-	//	}
 	Login(context.Context, *Empty) (*User, error)
 	Logout(context.Context, *Empty) (*Empty, error)
 	GetChatRoom(*Empty, grpc.ServerStreamingServer[Room]) error

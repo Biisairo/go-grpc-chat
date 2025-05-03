@@ -13,3 +13,8 @@ plugins:
     out: chatting
     opt:
       - paths=source_relative
+  - local: protoc-gen-grpc-gateway
+    out: chatting
+    opt:
+      - paths=source_relative
+      - grpc_api_configuration=chatting.yaml
