@@ -3,7 +3,7 @@ package main
 import (
 	"flag"
 	pb "grpc-example/chatting"
-	chattingserver "grpc-example/server"
+	chattingserver "grpc-example/chattingserver"
 	"log"
 	"net"
 
@@ -23,7 +23,15 @@ func main() {
 		log.Fatalf("Fail to Listen: %v", err)
 	}
 
-	server := grpc.NewServer(grpc.EmptyServerOption{})
+	// server := grpc.NewServer(grpc.EmptyServerOption{})
+	server := grpc.NewServer(
+		grpc.ChainUnaryInterceptor(
+			chattingserver.CustomUnaryMiddleware(),
+		),
+		grpc.ChainStreamInterceptor(
+			chattingserver.CustomStreamMiddleware(),
+		),
+	)
 	pb.RegisterChattingServer(server, chattingserver.NewServer())
 	server.Serve(lis)
 }
